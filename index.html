@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UEFA Champions League Final Watch Party · Paris | RELAYTO</title>
+  <meta name="description" content="Alex Shevelenko invites you to watch the Champions League Final in the 7ème. Good people. Good football. Good energy. Register your spot now.">
+
+  <!-- Montserrat: metric-compatible Proxima Nova fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            coral:   '#F1624C',
+            orange:  '#FD9001',
+            pink:    '#E2617A',
+            blue:    '#4978DE',
+            rose:    '#DF5A7D',
+            'surface-light': '#F6F6F6',
+            'text-body':     '#1A1A1A',
+            'text-muted':    '#434343',
+          },
+          fontFamily: {
+            sans: ['"Proxima Nova"', 'Montserrat', 'ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'sans-serif'],
+          },
+          keyframes: {
+            drift: {
+              '0%,100%': { transform: 'translate(0,0) rotate(0deg) scale(1)' },
+              '50%':     { transform: 'translate(20px,-24px) rotate(1deg) scale(1.04)' },
+            },
+            'drift-reverse': {
+              '0%,100%': { transform: 'translate(0,0) rotate(0deg) scale(1)' },
+              '50%':     { transform: 'translate(-18px,20px) rotate(-1deg) scale(1.03)' },
+            },
+            shimmer: {
+              '0%,100%': { backgroundPosition: '0% 50%' },
+              '50%':     { backgroundPosition: '200% 50%' },
+            },
+            fadeUp: {
+              from: { opacity: '0', transform: 'translateY(22px)' },
+              to:   { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+          animation: {
+            'drift-a':  'drift 13s ease-in-out infinite',
+            'drift-b':  'drift-reverse 10s ease-in-out infinite',
+            'drift-c':  'drift 11s ease-in-out infinite 2s',
+            'shimmer':  'shimmer 7s ease-in-out infinite',
+          },
+          transitionTimingFunction: {
+            'brand': 'cubic-bezier(0.22, 1, 0.36, 1)',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── Typography ───────────────────────────────────────────── */
+    body { font-family: 'Proxima Nova', 'Montserrat', ui-sans-serif, system-ui, sans-serif; }
+
+    /* ── Gradient text ────────────────────────────────────────── */
+    .g-text {
+      background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .g-text-shimmer {
+      background: linear-gradient(135deg, #FD9001 0%, #E2617A 50%, #FD9001 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmer 7s ease-in-out infinite;
+    }
+
+    /* ── Brand gradients ──────────────────────────────────────── */
+    .g-primary   { background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%); }
+    .g-secondary { background: linear-gradient(135deg, #4978DE 0%, #DF5A7D 100%); }
+    .g-coral     { background: linear-gradient(135deg, #F1624C 0%, #FD9001 100%); }
+
+    /* ── Primary CTA button ───────────────────────────────────── */
+    .btn-cta {
+      background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%);
+      box-shadow:
+        0 4px 12px rgba(241,98,76,.35),
+        0 0 24px  rgba(253,144,1,.20),
+        inset 0 1px 0 0 rgba(255,255,255,.25);
+      transition: box-shadow 280ms cubic-bezier(0.22,1,0.36,1),
+                  transform   280ms cubic-bezier(0.22,1,0.36,1);
+    }
+    .btn-cta:hover {
+      box-shadow:
+        0 8px 20px rgba(241,98,76,.45),
+        0 0 40px  rgba(253,144,1,.30),
+        inset 0 1px 0 0 rgba(255,255,255,.25);
+      transform: translateY(-2px);
+    }
+    .btn-cta:active { transform: scale(.98); }
+
+    /* ── Ghost button ─────────────────────────────────────────── */
+    .btn-ghost {
+      transition: background 200ms ease-out, border-color 200ms ease-out, color 200ms ease-out;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.30); color: #fff; }
+
+    /* ── Card hover lift ──────────────────────────────────────── */
+    .card-lift {
+      transition: transform 280ms cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 280ms cubic-bezier(0.22,1,0.36,1);
+    }
+    .card-lift:hover {
+      transform: translateY(-5px);
+      box-shadow:
+        0 2px 4px  rgba(0,0,0,.04),
+        0 16px 40px rgba(0,0,0,.09),
+        0 0 60px   rgba(253,144,1,.10);
+    }
+
+    /* ── Gradient border (Luma iframe wrap) ───────────────────── */
+    .g-border {
+      background:
+        linear-gradient(#0D0D0D, #0D0D0D) padding-box,
+        linear-gradient(135deg, rgba(253,144,1,.7), rgba(226,97,122,.7)) border-box;
+      border: 1px solid transparent;
+    }
+
+    /* ── Scroll reveal ────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s cubic-bezier(0.22,1,0.36,1),
+                  transform .6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ── Reduced motion ───────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white overflow-x-hidden antialiased">
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!--  STICKY HEADER                                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <a href="https://relayto.com" class="flex items-center gap-2.5 flex-shrink-0 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F1624C]/40 rounded-xl">
+        <div class="w-8 h-8 rounded-xl g-primary flex items-center justify-center">
+          <!-- Replace src with real logo asset when available -->
+          <span class="text-white font-bold text-sm leading-none">R</span>
+        </div>
+        <span class="font-bold text-white text-lg tracking-tight">RELAYTO</span>
+      </a>
+
+      <!-- Nav links -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Page sections">
+        <a href="#about"    class="text-white/50 hover:text-white text-sm font-semibold transition-colors duration-200">About</a>
+        <a href="#location" class="text-white/50 hover:text-white text-sm font-semibold transition-colors duration-200">Location</a>
+      </nav>
+
+      <!-- Sticky CTA -->
+      <a href="https://luma.com/8nih5m30?lm_source=embed" target="_blank" rel="noopener noreferrer"
+         class="btn-cta flex-shrink-0 px-5 py-2.5 rounded-full text-white text-sm font-semibold
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F1624C]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+        Register Now
+      </a>
+
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!--  HERO — dark canvas                                         -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+
+    <!-- Base dark radial -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#1A1A1A_0%,#000000_100%)]" aria-hidden="true"></div>
+
+    <!-- Blob A — warm, top-right -->
+    <div class="absolute -top-32 -right-32 w-[800px] h-[800px] rounded-full pointer-events-none animate-drift-a"
+         style="background:radial-gradient(circle,#FD9001 0%,#E2617A 45%,transparent 70%);filter:blur(130px);opacity:.28;" aria-hidden="true"></div>
+
+    <!-- Blob B — cool, bottom-left -->
+    <div class="absolute -bottom-40 -left-40 w-[700px] h-[900px] rounded-full pointer-events-none animate-drift-b"
+         style="background:radial-gradient(circle,#4978DE 0%,#DF5A7D 45%,transparent 70%);filter:blur(150px);opacity:.18;" aria-hidden="true"></div>
+
+    <!-- Blob C — accent pinpoint, mid -->
+    <div class="absolute top-1/2 left-1/3 w-[400px] h-[400px] rounded-full pointer-events-none animate-drift-c"
+         style="background:radial-gradient(circle,#F1624C,transparent 70%);filter:blur(100px);opacity:.10;" aria-hidden="true"></div>
+
+    <!-- Content grid -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <!-- ── Left: Copy ────────────────────────────────────── -->
+        <div class="reveal">
+
+          <!-- Event label pill -->
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full
+                      border border-white/10 bg-white/[0.06] backdrop-blur-sm mb-8">
+            <span class="w-2 h-2 rounded-full g-primary flex-shrink-0" style="animation:none"></span>
+            <span class="text-xs font-semibold text-white/70 tracking-widest uppercase">
+              UEFA Champions League Final · Paris
+            </span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight mb-6">
+            Football.<br>
+            Founders.<br>
+            <span class="g-text-shimmer">The&nbsp;7ème.</span>
+          </h1>
+
+          <!-- Sub-headline -->
+          <p class="text-lg lg:text-xl text-white/65 leading-relaxed mb-8 max-w-lg">
+            Alex Shevelenko is hosting an intimate watch party for the Champions League Final —
+            good people, great football, and the kind of energy only Paris can deliver.
+          </p>
+
+          <!-- Quick facts row -->
+          <div class="flex flex-col sm:flex-row gap-5 mb-10">
+
+            <div class="flex items-center gap-3.5">
+              <div class="w-11 h-11 rounded-2xl bg-white/[0.08] border border-white/[0.10] flex items-center justify-center flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FD9001"
+                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8"  y1="2" x2="8"  y2="6"/>
+                  <line x1="3"  y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-[11px] text-white/40 font-semibold uppercase tracking-widest">Date &amp; Time</div>
+                <div class="text-sm font-semibold text-white mt-0.5">Sat, May 30 · 6 – 8 PM GMT+2</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3.5">
+              <div class="w-11 h-11 rounded-2xl bg-white/[0.08] border border-white/[0.10] flex items-center justify-center flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2617A"
+                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-[11px] text-white/40 font-semibold uppercase tracking-widest">Location</div>
+                <div class="text-sm font-semibold text-white mt-0.5">7th Arrondissement, Paris</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CTA group -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="https://luma.com/8nih5m30?lm_source=embed" target="_blank" rel="noopener noreferrer"
+               class="btn-cta inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full
+                      text-white font-semibold text-base lg:text-lg
+                      focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F1624C]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+              Secure Your Spot
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+
+            <a href="#about"
+               class="btn-ghost inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full
+                      text-white/60 font-semibold text-base border border-white/[0.15]
+                      focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30">
+              More Details
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ── Right: Luma iframe ─────────────────────────────── -->
+        <div class="reveal" style="transition-delay:.15s">
+
+          <!-- Gradient border wrapper -->
+          <div class="g-border rounded-3xl overflow-hidden">
+            <div class="bg-[#0D0D0D] rounded-[23px]">
+              <iframe
+                src="https://luma.com/embed/event/evt-CNgYEKHFYnTmaXD/simple"
+                width="100%"
+                height="500"
+                frameborder="0"
+                style="display:block;min-height:500px;"
+                allow="fullscreen; payment"
+                aria-hidden="false"
+                tabindex="0"
+                title="Register — UEFA Champions League Final Watch Party, Paris"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+
+          <p class="text-center text-white/30 text-xs mt-3 font-semibold tracking-wide">
+            Hosted by Alex Shevelenko · RELAYTO &nbsp;·&nbsp; Spaces are limited
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Fade-out to light section below -->
+    <div class="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#F6F6F6] to-transparent pointer-events-none" aria-hidden="true"></div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!--  ABOUT / DETAILS — light canvas                             -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="about" class="bg-[#F6F6F6] py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+      <!-- Section heading -->
+      <div class="text-center mb-16 reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full
+                    border border-black/[0.08] bg-white mb-6">
+          <span class="text-xs font-semibold text-[#434343] tracking-widest uppercase">About the Event</span>
+        </div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-[#1A1A1A] leading-tight tracking-tight">
+          Straight from the <span class="g-text">host himself</span>
+        </h2>
+      </div>
+
+      <!-- Content grid: quote card + detail cards -->
+      <div class="grid lg:grid-cols-5 gap-8 items-start">
+
+        <!-- ── Quote card (spans 3 of 5 cols) ─────────────────── -->
+        <div class="lg:col-span-3 reveal" style="transition-delay:.08s">
+          <article class="bg-white rounded-3xl p-8 lg:p-10 border border-black/[0.06] card-lift h-full"
+                   style="box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);">
+
+            <!-- Quote icon tile -->
+            <div class="w-12 h-12 rounded-2xl g-primary flex items-center justify-center mb-6 flex-shrink-0">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+              </svg>
+            </div>
+
+            <blockquote class="text-[#1A1A1A] text-lg lg:text-xl leading-relaxed font-semibold mb-5">
+              "Hey friends, founders, football fans — let's have some fun and watch the beautiful game
+              together in the 7ème… where hopefully the rioting will be limited."
+            </blockquote>
+
+            <p class="text-[#434343] text-base leading-relaxed mb-4">
+              Also, my son (11) will be watching nearby with his friends, so your presence will help
+              reinforce the illusion that I'm still cool, socially relevant, and generally switched on.
+            </p>
+
+            <p class="text-[#434343] text-base leading-relaxed font-semibold">
+              Keeping it intentionally small: good people, good football, good energy.
+            </p>
+
+            <!-- Host chip -->
+            <div class="flex items-center gap-3 mt-8 pt-6 border-t border-black/[0.06]">
+              <div class="w-10 h-10 rounded-full g-primary flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-bold text-sm leading-none">AS</span>
+              </div>
+              <div>
+                <div class="font-semibold text-[#1A1A1A] text-sm">Alex Shevelenko</div>
+                <div class="text-[#434343] text-xs">Host · RELAYTO</div>
+              </div>
+            </div>
+
+          </article>
+        </div>
+
+        <!-- ── Detail cards (spans 2 of 5 cols) ───────────────── -->
+        <div class="lg:col-span-2 flex flex-col gap-4 reveal" id="location" style="transition-delay:.18s">
+
+          <!-- Date & Time -->
+          <div class="bg-white rounded-2xl p-6 border border-black/[0.06] card-lift"
+               style="box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl g-primary flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"
+                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8"  y1="2" x2="8"  y2="6"/>
+                  <line x1="3"  y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-[11px] font-semibold text-[#434343] uppercase tracking-widest mb-1">Date &amp; Time</div>
+                <div class="font-bold text-[#1A1A1A] text-base">Saturday, May 30</div>
+                <div class="text-[#434343] text-sm mt-0.5">6:00 PM – 8:00 PM GMT+2</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="bg-white rounded-2xl p-6 border border-black/[0.06] card-lift"
+               style="box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl g-secondary flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"
+                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-[11px] font-semibold text-[#434343] uppercase tracking-widest mb-1">Location</div>
+                <div class="font-bold text-[#1A1A1A] text-base">7th Arrondissement</div>
+                <div class="text-[#434343] text-sm mt-0.5">75007 Paris, France</div>
+                <div class="inline-flex items-center gap-1 mt-2 px-2.5 py-1 rounded-full
+                            border border-[#F1624C]/30 bg-[#F1624C]/[0.06]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#F1624C] flex-shrink-0"></span>
+                  <span class="text-[11px] text-[#F1624C] font-semibold">Venue TBC — check back soon</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Capacity -->
+          <div class="bg-white rounded-2xl p-6 border border-black/[0.06] card-lift"
+               style="box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl g-coral flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"
+                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-[11px] font-semibold text-[#434343] uppercase tracking-widest mb-1">Attendance</div>
+                <div class="font-bold text-[#1A1A1A] text-base">Intentionally Small</div>
+                <div class="text-[#434343] text-sm mt-0.5">Limited spots — register early</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar CTA -->
+          <a href="https://luma.com/8nih5m30?lm_source=embed" target="_blank" rel="noopener noreferrer"
+             class="btn-cta w-full py-4 rounded-2xl text-white font-semibold text-base text-center
+                    focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F1624C]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F6F6F6]">
+            Register on Lu.ma
+            <svg class="inline-block ml-2" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!--  RELAYTO BRAND STRIP — dark moment                          -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="bg-black py-16 overflow-hidden relative">
+    <!-- Warm accent halo -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] pointer-events-none"
+         style="background:radial-gradient(ellipse,rgba(253,144,1,.5),rgba(226,97,122,.4),transparent 70%);filter:blur(80px);opacity:.25;" aria-hidden="true"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center reveal">
+      <p class="text-white/35 text-xs font-semibold uppercase tracking-widest mb-5">An event powered by</p>
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl g-primary flex items-center justify-center">
+          <span class="text-white font-bold leading-none">R</span>
+        </div>
+        <span class="text-white font-bold text-2xl tracking-tight">RELAYTO</span>
+      </div>
+      <p class="text-white/45 text-base max-w-xl mx-auto leading-relaxed">
+        Transform your documents and presentations into immersive, interactive experiences —
+        built for the teams that need to be remembered.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!--  FOOTER                                                     -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <footer class="bg-black border-t border-white/[0.06] py-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8
+                flex flex-col md:flex-row items-center justify-between gap-4">
+
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-lg g-primary flex items-center justify-center">
+          <span class="text-white font-bold text-xs leading-none">R</span>
+        </div>
+        <span class="text-white/50 text-sm font-semibold">RELAYTO</span>
+      </div>
+
+      <p class="text-white/25 text-xs text-center order-last md:order-none">
+        &copy; 2025 RELAYTO, Inc. All rights reserved.
+      </p>
+
+      <a href="https://luma.com/8nih5m30?lm_source=embed" target="_blank" rel="noopener noreferrer"
+         class="text-[#FD9001] hover:text-[#E2617A] text-sm font-semibold transition-colors duration-200">
+        Register for the event &rarr;
+      </a>
+
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!--  SCROLL REVEAL JS                                           -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, idx) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => entry.target.classList.add('in'), idx * 80);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    })();
+  </script>
+
+</body>
+</html>
