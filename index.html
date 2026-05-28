@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>RELAYTO vs Turtl / Ceros, Compare interactive experience platforms</title>
+<meta name="description" content="See how RELAYTO compares to Turtl and Ceros for microsites, ABM hubs, proposals, pursuits, and content destinations." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['"Proxima Nova"', '"Proxima Nova Fallback"', 'Montserrat', 'ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'sans-serif'],
+      },
+      colors: {
+        canvas: { light: '#F6F6F6', white: '#FFFFFF', dark: '#000000', 'dark-elevated': '#1A1A1A' },
+        ink: { DEFAULT: '#000000', muted: '#434343', soft: '#8A8A8A' },
+        brand: {
+          coral: '#F1624C',
+          'coral-dark': '#D14A37',
+          orange: '#FD9001',
+          pink: '#E2617A',
+          blue: '#4978DE',
+          'blue-dark': '#3C66C2',
+          rose: '#DF5A7D',
+        },
+      },
+      boxShadow: {
+        card: '0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)',
+        'card-hover': '0 2px 4px rgba(0,0,0,0.04), 0 16px 40px rgba(0,0,0,0.08), 0 0 60px rgba(253,144,1,0.10)',
+        cta: '0 4px 12px rgba(241,98,76,0.35), 0 0 24px rgba(253,144,1,0.20), inset 0 1px 0 0 rgba(255,255,255,0.25)',
+        'cta-hover': '0 6px 20px rgba(241,98,76,0.45), 0 0 36px rgba(253,144,1,0.30), inset 0 1px 0 0 rgba(255,255,255,0.30)',
+        toggle: '0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), inset 0 1px 0 0 rgba(255,255,255,0.6)',
+      },
+    },
+  },
+};
+</script>
+<style>
+:root {
+  --brand-coral: #F1624C;
+  --brand-orange: #FD9001;
+  --brand-pink: #E2617A;
+  --brand-blue: #4978DE;
+  --brand-rose: #DF5A7D;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Proxima Nova','Proxima Nova Fallback','Montserrat',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  background: #F6F6F6;
+  color: #1A1A1A;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.bg-canvas {
+  background:
+    radial-gradient(ellipse 1200px 700px at 80% -10%, rgba(253,144,1,0.10), transparent 60%),
+    radial-gradient(ellipse 1000px 700px at -10% 100%, rgba(73,120,222,0.10), transparent 60%),
+    radial-gradient(ellipse at top, #FFFFFF 0%, #F6F6F6 100%);
+}
+.gradient-primary { background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%); }
+.gradient-secondary { background: linear-gradient(135deg, #4978DE 0%, #DF5A7D 100%); }
+.text-gradient-primary {
+  background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.text-gradient-secondary {
+  background: linear-gradient(135deg, #4978DE 0%, #DF5A7D 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.text-gradient-animated {
+  background: linear-gradient(135deg, #FD9001 0%, #E2617A 35%, #FD9001 70%, #E2617A 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shimmer 7s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%,100% { background-position: 0% 50%; }
+  50%     { background-position: 200% 50%; }
+}
+.blob {
+  position: absolute; pointer-events: none; border-radius: 9999px; filter: blur(120px);
+  will-change: transform;
+}
+.blob-warm  { background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%); opacity: .28; animation: drift 12s ease-in-out infinite; }
+.blob-cool  { background: linear-gradient(135deg, #4978DE 0%, #DF5A7D 100%); opacity: .18; animation: drift2 14s ease-in-out infinite; }
+.blob-pin   { background: #F1624C; opacity: .14; filter: blur(100px); animation: drift3 10s ease-in-out infinite; }
+@keyframes drift  { 0%,100% { transform: translate(0,0) scale(1);} 50% { transform: translate(20px,-24px) scale(1.04);} }
+@keyframes drift2 { 0%,100% { transform: translate(0,0) scale(1);} 50% { transform: translate(-24px,18px) scale(1.05);} }
+@keyframes drift3 { 0%,100% { transform: translate(0,0) scale(1);} 50% { transform: translate(16px,16px) scale(1.06);} }
+
+.noise {
+  position: absolute; inset: 0; pointer-events: none; opacity: .025; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>");
+}
+
+/* Toggle */
+.seg {
+  position: relative; display: inline-flex; align-items: center;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 9999px; padding: 6px; gap: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.08), inset 0 1px 0 0 rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+}
+.seg .pill {
+  position: absolute; top: 6px; bottom: 6px; left: 6px; width: calc(50% - 6px);
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%);
+  box-shadow: 0 4px 12px rgba(241,98,76,0.35), 0 0 24px rgba(253,144,1,0.20), inset 0 1px 0 0 rgba(255,255,255,0.25);
+  transition: transform .35s cubic-bezier(0.22,1,0.36,1), background .35s cubic-bezier(0.22,1,0.36,1), box-shadow .35s cubic-bezier(0.22,1,0.36,1);
+  z-index: 0;
+}
+.seg[data-active="ceros"] .pill {
+  transform: translateX(100%);
+  background: linear-gradient(135deg, #4978DE 0%, #DF5A7D 100%);
+  box-shadow: 0 4px 12px rgba(73,120,222,0.30), 0 0 24px rgba(223,90,125,0.20), inset 0 1px 0 0 rgba(255,255,255,0.25);
+}
+.seg button {
+  position: relative; z-index: 1; padding: 10px 22px; border-radius: 9999px;
+  font-weight: 600; font-size: 14px; letter-spacing: .01em;
+  color: #434343; transition: color .35s cubic-bezier(0.22,1,0.36,1);
+  white-space: nowrap;
+}
+.seg button[aria-pressed="true"] { color: #fff; }
+.seg button:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(241,98,76,0.30); }
+
+@media (max-width: 480px) {
+  .seg button { padding: 10px 14px; font-size: 13px; }
+}
+
+/* Compare content swap */
+.compare-swap { transition: opacity .28s cubic-bezier(0.22,1,0.36,1), transform .28s cubic-bezier(0.22,1,0.36,1); }
+.compare-swap.is-leaving { opacity: 0; transform: translateY(6px); }
+.compare-swap.is-entering { opacity: 0; transform: translateY(6px); }
+
+/* Card */
+.card {
+  background: #FFFFFF;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 24px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  transition: transform .25s cubic-bezier(0.22,1,0.36,1), box-shadow .25s cubic-bezier(0.22,1,0.36,1), border-color .25s cubic-bezier(0.22,1,0.36,1);
+}
+.card.is-hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 16px 40px rgba(0,0,0,0.08), 0 0 60px rgba(253,144,1,0.10);
+}
+
+/* Comparison row */
+.cmp-row { transition: background-color .2s ease; }
+.cmp-row:hover { background-color: rgba(241,98,76,0.025); }
+.cmp-bad {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+  background: rgba(0,0,0,0.045); color: #434343; font-weight: 600; font-size: 13px;
+  border-radius: 9999px; border: 1px solid rgba(0,0,0,0.06);
+}
+.cmp-good {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+  color: #fff; font-weight: 600; font-size: 13px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%);
+  box-shadow: 0 2px 6px rgba(241,98,76,0.25);
+}
+.is-cool .cmp-good {
+  background: linear-gradient(135deg, #4978DE 0%, #DF5A7D 100%);
+  box-shadow: 0 2px 6px rgba(73,120,222,0.25);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 26px; border-radius: 9999px; font-weight: 600;
+  color: #fff; background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%);
+  box-shadow: 0 4px 12px rgba(241,98,76,0.35), 0 0 24px rgba(253,144,1,0.20), inset 0 1px 0 0 rgba(255,255,255,0.25);
+  transition: transform .2s cubic-bezier(0.22,1,0.36,1), box-shadow .2s cubic-bezier(0.22,1,0.36,1), filter .2s ease;
+  position: relative; overflow: hidden;
+}
+.btn-primary:hover { filter: brightness(1.04); box-shadow: 0 6px 20px rgba(241,98,76,0.45), 0 0 36px rgba(253,144,1,0.30), inset 0 1px 0 0 rgba(255,255,255,0.30); transform: translateY(-2px); }
+.btn-primary:active { transform: scale(0.98); }
+.btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(241,98,76,0.30), 0 4px 12px rgba(241,98,76,0.35); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 24px; border-radius: 9999px; font-weight: 600;
+  color: #000; background: transparent; border: 1px solid rgba(241,98,76,0.45);
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.btn-secondary:hover { background: rgba(241,98,76,0.08); border-color: rgba(241,98,76,1); }
+.btn-secondary:active { transform: scale(0.98); }
+
+/* Section dividers */
+.divider {
+  height: 1px; width: 100%;
+  background: linear-gradient(to right, transparent, rgba(241,98,76,0.30), transparent);
+}
+
+/* Story step number */
+.step-num {
+  width: 56px; height: 56px; border-radius: 16px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 700; font-size: 22px;
+  background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%);
+  box-shadow: 0 6px 16px rgba(241,98,76,0.22), inset 0 1px 0 0 rgba(255,255,255,0.25);
+}
+.is-cool .step-num {
+  background: linear-gradient(135deg, #4978DE 0%, #DF5A7D 100%);
+  box-shadow: 0 6px 16px rgba(73,120,222,0.22), inset 0 1px 0 0 rgba(255,255,255,0.25);
+}
+
+/* Icon tile (rounded rectangle, never circle) */
+.icon-tile {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; flex: none;
+}
+
+/* Sticky header */
+.appbar {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: saturate(140%) blur(14px);
+  background: rgba(246,246,246,0.78);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Floating switch CTA */
+.float-switch {
+  position: fixed; right: 18px; bottom: 18px; z-index: 60;
+  display: none;
+}
+@media (max-width: 768px) {
+  .float-switch { display: flex; }
+}
+
+.kbd {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 22px; height: 22px; padding: 0 6px;
+  font-size: 11px; font-weight: 600; color: #434343;
+  background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 6px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .blob, .text-gradient-animated { animation: none !important; }
+  .compare-swap { transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* Table wrap on mobile */
+.cmp-grid {
+  display: grid; gap: 1px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 24px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.cmp-grid > * { background: #fff; }
+.cmp-grid .cmp-head { background: #FAFAFA; }
+
+/* Big table */
+.bigtable th, .bigtable td { vertical-align: top; }
+.bigtable th { font-weight: 600; color: #434343; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.bigtable td { font-size: 14.5px; line-height: 1.55; color: #1A1A1A; }
+.bigtable tr + tr td { border-top: 1px solid rgba(0,0,0,0.06); }
+.bigtable .col-them { color: #434343; }
+.bigtable .col-rel  { color: #1A1A1A; font-weight: 500; }
+.bigtable .col-adv  { color: #1A1A1A; }
+.bigtable .col-val  { color: #1A1A1A; }
+.bigtable .feature  { font-weight: 700; color: #000; }
+
+.metric {
+  display: inline-block; padding: 4px 10px; border-radius: 9999px;
+  background: rgba(241,98,76,0.10); color: #C5402B; font-weight: 700; font-size: 12px;
+  border: 1px solid rgba(241,98,76,0.20); margin-right: 6px; margin-top: 4px;
+}
+.is-cool .metric { background: rgba(73,120,222,0.10); color: #2F55B5; border-color: rgba(73,120,222,0.20); }
+
+/* Mobile big-table cards */
+@media (max-width: 880px) {
+  .bigtable thead { display: none; }
+  .bigtable, .bigtable tbody, .bigtable tr, .bigtable td { display: block; width: 100%; }
+  .bigtable tr { background: #fff; border-radius: 20px; border: 1px solid rgba(0,0,0,0.06); margin-bottom: 14px; padding: 18px; box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 6px 18px rgba(0,0,0,0.04); }
+  .bigtable tr + tr td { border-top: none; }
+  .bigtable td { padding: 8px 0 !important; border-top: 1px dashed rgba(0,0,0,0.07) !important; }
+  .bigtable td:first-child { border-top: 0 !important; padding-top: 0 !important; font-size: 16px; }
+  .bigtable td::before {
+    content: attr(data-label);
+    display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: #8A8A8A; font-weight: 700; margin-bottom: 4px;
+  }
+  .bigtable td:first-child::before { display: none; }
+}
+
+a:focus-visible, button:focus-visible {
+  outline: none; box-shadow: 0 0 0 3px rgba(241,98,76,0.35);
+  border-radius: 8px;
+}
+
+/* Fade-up entrance */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(0.22,1,0.36,1), transform .55s cubic-bezier(0.22,1,0.36,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* Stats strip */
+.stat-card {
+  background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 20px; padding: 18px 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+}
+.stat-num {
+  font-size: 36px; line-height: 1; font-weight: 800; letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #FD9001 0%, #E2617A 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.is-cool .stat-num {
+  background: linear-gradient(135deg, #4978DE 0%, #DF5A7D 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+</style>
+</head>
+<body class="bg-canvas">
+
+<!-- Ambient background -->
+<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+  <div class="blob blob-warm" style="width:900px;height:900px;top:-260px;right:-220px;"></div>
+  <div class="blob blob-cool" style="width:760px;height:880px;bottom:-260px;left:-220px;"></div>
+  <div class="blob blob-pin"  style="width:420px;height:420px;top:38%;left:42%;"></div>
+  <div class="noise"></div>
+</div>
+
+<!-- Sticky header -->
+<header class="appbar">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 font-bold tracking-tight text-lg">
+      <span class="inline-flex items-center justify-center w-9 h-9 rounded-2xl gradient-primary shadow-cta">
+        <!-- mark -->
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h11a4 4 0 0 1 0 8H7l4 6"/>
+        </svg>
+      </span>
+      <span>RELAYTO<span class="text-ink-muted font-medium">/</span><span class="text-gradient-primary">compare</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-ink-muted">
+      <a href="#narrative" class="hover:text-black transition">Why RELAYTO</a>
+      <a href="#quickcompare" class="hover:text-black transition">Quick compare</a>
+      <a href="#bigtable" class="hover:text-black transition">Full breakdown</a>
+      <a href="#cta" class="btn-primary !py-2.5 !px-5 !text-sm">Book a demo
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </a>
+    </nav>
+    <a href="#cta" class="md:hidden btn-primary !py-2 !px-4 !text-sm">Demo</a>
+  </div>
+</header>
+
+<main id="top" class="relative">
+  <!-- HERO -->
+  <section class="relative pt-14 sm:pt-20 pb-10 sm:pb-16">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="reveal in flex items-center gap-2 mb-6">
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-black/5 text-xs font-semibold text-ink-muted shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full gradient-primary"></span>
+          Interactive comparison · 2026
+        </span>
+        <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-black/5 text-xs font-semibold text-ink-muted shadow-sm">
+          Switch competitor anytime <span class="kbd">T</span> / <span class="kbd">C</span>
+        </span>
+      </div>
+
+      <h1 class="reveal in font-bold tracking-tight text-[clamp(38px,6.4vw,84px)] leading-[1.03] text-black">
+        RELAYTO vs <span data-swap="competitor.heroName" class="compare-swap text-gradient-animated">Turtl</span>.<br/>
+        Same canvas. <span class="text-gradient-primary">Different outcomes.</span>
+      </h1>
+
+      <p class="reveal in mt-6 max-w-3xl text-lg sm:text-xl text-ink-muted leading-relaxed" data-swap="hero.lede">
+      </p>
+
+      <!-- Toggle -->
+      <div class="reveal in mt-10 flex flex-wrap items-center gap-4">
+        <span class="text-xs uppercase tracking-widest font-semibold text-ink-soft">Comparing against</span>
+        <div class="seg" role="tablist" aria-label="Choose competitor" data-active="turtl" id="segToggle">
+          <span class="pill" aria-hidden="true"></span>
+          <button role="tab" aria-pressed="true"  data-value="turtl">RELAYTO vs Turtl</button>
+          <button role="tab" aria-pressed="false" data-value="ceros">RELAYTO vs Ceros</button>
+        </div>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="reveal in mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <div class="stat-card compare-swap" data-stat-card>
+          <div class="stat-num" data-swap="hero.stat1.num"></div>
+          <div class="mt-2 text-sm text-ink-muted" data-swap="hero.stat1.label"></div>
+        </div>
+        <div class="stat-card compare-swap" data-stat-card>
+          <div class="stat-num" data-swap="hero.stat2.num"></div>
+          <div class="mt-2 text-sm text-ink-muted" data-swap="hero.stat2.label"></div>
+        </div>
+        <div class="stat-card compare-swap" data-stat-card>
+          <div class="stat-num" data-swap="hero.stat3.num"></div>
+          <div class="mt-2 text-sm text-ink-muted" data-swap="hero.stat3.label"></div>
+        </div>
+        <div class="stat-card compare-swap" data-stat-card>
+          <div class="stat-num" data-swap="hero.stat4.num"></div>
+          <div class="mt-2 text-sm text-ink-muted" data-swap="hero.stat4.label"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8"><div class="divider"></div></div>
+
+  <!-- NARRATIVE / WHY -->
+  <section id="narrative" class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="mb-12 sm:mb-16 max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-black/5 text-xs font-semibold text-ink-muted shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full gradient-primary"></span>
+          Why teams switch
+        </div>
+        <h2 class="mt-5 text-4xl sm:text-5xl font-bold tracking-tight">
+          The differences that show up in <span class="text-gradient-primary" data-swap="narrative.heading.tail">marketing campaigns</span>.
+        </h2>
+        <p class="mt-4 text-lg text-ink-muted" data-swap="narrative.kicker"></p>
+      </div>
+
+      <!-- Story steps - rendered dynamically -->
+      <div class="grid grid-cols-1 gap-6 compare-swap" id="storySteps"></div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8"><div class="divider"></div></div>
+
+  <!-- QUICK COMPARE -->
+  <section id="quickcompare" class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="mb-10 flex items-end justify-between flex-wrap gap-4">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-black/5 text-xs font-semibold text-ink-muted shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full gradient-secondary"></span>
+            Quick compare
+          </div>
+          <h2 class="mt-5 text-3xl sm:text-4xl font-bold tracking-tight" data-swap="quick.title"></h2>
+          <p class="mt-3 text-ink-muted text-lg" data-swap="quick.sub"></p>
+        </div>
+      </div>
+
+      <div class="card overflow-hidden compare-swap">
+        <div class="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[1.6fr_1fr_1fr] text-sm">
+          <div class="px-4 sm:px-6 py-4 bg-[#FAFAFA] border-b border-black/[0.06] font-semibold text-ink-muted text-xs uppercase tracking-widest">Capability</div>
+          <div class="px-4 sm:px-6 py-4 bg-[#FAFAFA] border-b border-black/[0.06] font-semibold text-ink-muted text-xs uppercase tracking-widest text-center" data-swap="quick.colCompetitor"></div>
+          <div class="px-4 sm:px-6 py-4 border-b bg-gradient-to-r from-[#FD9001]/10 to-[#E2617A]/10 border-black/[0.06] font-semibold text-xs uppercase tracking-widest text-center text-black">RELAYTO</div>
+        </div>
+        <div id="quickRows" class="text-[15px]"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8"><div class="divider"></div></div>
+
+  <!-- BIG TABLE -->
+  <section id="bigtable" class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="mb-10 max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-black/5 text-xs font-semibold text-ink-muted shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full gradient-primary"></span>
+          Full breakdown
+        </div>
+        <h2 class="mt-5 text-3xl sm:text-4xl font-bold tracking-tight">
+          The capability table, with the <span class="text-gradient-primary">business value</span> attached.
+        </h2>
+        <p class="mt-3 text-ink-muted text-lg" data-swap="big.sub"></p>
+      </div>
+
+      <div class="card p-2 sm:p-4 compare-swap">
+        <div class="overflow-x-auto">
+          <table class="bigtable w-full">
+            <thead>
+              <tr class="bg-[#FAFAFA] rounded-2xl">
+                <th class="text-left px-4 sm:px-5 py-4 rounded-l-2xl">Capability</th>
+                <th class="text-left px-4 sm:px-5 py-4" data-swap="big.colCompetitor"></th>
+                <th class="text-left px-4 sm:px-5 py-4">RELAYTO</th>
+                <th class="text-left px-4 sm:px-5 py-4">RELAYTO advantage</th>
+                <th class="text-left px-4 sm:px-5 py-4 rounded-r-2xl">RELAYTO business value</th>
+              </tr>
+            </thead>
+            <tbody id="bigtableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8"><div class="divider"></div></div>
+
+  <!-- CTA -->
+  <section id="cta" class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="relative overflow-hidden rounded-3xl border border-black/5 shadow-card">
+        <div class="absolute inset-0 gradient-primary"></div>
+        <div class="absolute inset-0 opacity-30" style="background: radial-gradient(ellipse at top right, rgba(255,255,255,0.5), transparent 60%);"></div>
+        <div class="absolute -bottom-24 -left-24 w-[420px] h-[420px] rounded-full" style="background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 60%);"></div>
+        <div class="relative p-10 sm:p-16 grid md:grid-cols-[1.5fr_1fr] gap-10 items-center text-white">
+          <div>
+            <h3 class="text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
+              See the difference, <br class="hidden sm:block"/>
+              <span class="text-white/90">on your own content.</span>
+            </h3>
+            <p class="mt-5 text-white/85 text-lg max-w-xl">
+              Bring a PDF, a deck, or a Figma export. We'll show you a RELAYTO microsite,
+              ABM hub, or pursuit destination, built from your assets, in days not weeks.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="https://relayto.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-black font-semibold shadow-[0_8px_24px_rgba(0,0,0,0.18)] hover:translate-y-[-2px] transition">
+                Book a demo
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+              </a>
+              <a href="https://relayto.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold border border-white/30 transition">
+                Explore RELAYTO
+              </a>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="rounded-2xl bg-white/10 border border-white/25 backdrop-blur-md p-6 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)]">
+              <div class="text-xs uppercase tracking-widest text-white/70 font-semibold">What you'll get</div>
+              <ul class="mt-3 space-y-3 text-[15px]">
+                <li class="flex gap-3 items-start"><span class="mt-1 w-5 h-5 rounded-md bg-white/20 inline-flex items-center justify-center flex-none"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Live walk-through with your content</li>
+                <li class="flex gap-3 items-start"><span class="mt-1 w-5 h-5 rounded-md bg-white/20 inline-flex items-center justify-center flex-none"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Hub &amp; microsite use-case examples</li>
+                <li class="flex gap-3 items-start"><span class="mt-1 w-5 h-5 rounded-md bg-white/20 inline-flex items-center justify-center flex-none"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Security, SSO &amp; analytics overview</li>
+                <li class="flex gap-3 items-start"><span class="mt-1 w-5 h-5 rounded-md bg-white/20 inline-flex items-center justify-center flex-none"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Pricing &amp; rollout plan</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pb-12">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between text-sm text-ink-muted">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-xl gradient-primary">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h11a4 4 0 0 1 0 8H7l4 6"/></svg>
+        </span>
+        <span>© <span id="year"></span> RELAYTO. All product names and trademarks belong to their respective owners.</span>
+      </div>
+      <div class="flex items-center gap-5">
+        <a href="https://relayto.com" target="_blank" rel="noopener" class="hover:text-black transition">relayto.com</a>
+        <a href="#top" class="hover:text-black transition">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<!-- Mobile float switch -->
+<div class="float-switch">
+  <div class="seg" data-active="turtl" id="segToggleMobile" role="tablist" aria-label="Choose competitor (mobile)">
+    <span class="pill"></span>
+    <button role="tab" aria-pressed="true"  data-value="turtl">Turtl</button>
+    <button role="tab" aria-pressed="false" data-value="ceros">Ceros</button>
+  </div>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+
+const ICONS = {
+  layers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
+  hub:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="5"  cy="5"  r="2"/><circle cx="19" cy="5"  r="2"/><circle cx="5"  cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M6.5 6.5 10 10"/><path d="M17.5 6.5 14 10"/><path d="M6.5 17.5 10 14"/><path d="M17.5 17.5 14 14"/></svg>',
+  team:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  spark:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4"/><path d="M12 17v4"/><path d="M3 12h4"/><path d="M17 12h4"/><path d="M5.6 5.6 8.4 8.4"/><path d="M15.6 15.6l2.8 2.8"/><path d="M5.6 18.4 8.4 15.6"/><path d="M15.6 8.4 18.4 5.6"/></svg>',
+  figma:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="12" r="3"/><path d="M11 3h3v6h-3a3 3 0 0 1 0-6z"/><path d="M14 3h3a3 3 0 0 1 0 6h-3z"/><path d="M11 9h3v6h-3a3 3 0 0 1 0-6z"/><path d="M11 15h3v3a3 3 0 0 1-3 3 3 3 0 0 1 0-6z"/></svg>',
+  bolt:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7l1-6z"/></svg>',
+};
+
+const DATA = {
+  turtl: {
+    competitor: { heroName: 'Turtl', name: 'Turtl' },
+    hero: {
+      lede: 'Both deliver an interactive document and measure engagement. But teams that evaluated us both chose RELAYTO because, beyond ISO 27001, SOC 2 and DPA, RELAYTO does much more than single-format docs with less friction, less cost, and far more business value across Account Based Marketing.',
+      stat1: { num: '15+', label: 'Familiar content formats supported, vs one single Turtl format' },
+      stat2: { num: '1‑click', label: 'Navigation to any page, no "surf" / "immerse" detours' },
+      stat3: { num: '25%+', label: 'Sustained traffic uplift from interactive destinations' },
+      stat4: { num: '2x',   label: 'Higher win rates in competitive bids with ABM hubs' },
+    },
+    narrative: {
+      heading: { tail: 'marketing campaigns' },
+      kicker: 'Customers comparing RELAYTO and Turtl tell us the same four things drive the decision.',
+    },
+    story: [
+      {
+        icon: ICONS.layers, title: 'Single format vs any format',
+        themLabel: 'Turtl', them: 'Every Turtl document is a "surf" or "immerse" page. Recipients find the format unfamiliar and repetitive, every Turtl doc looks the same, and reaching a relevant page takes multiple clicks.',
+        usLabel: 'RELAYTO', us: 'RELAYTO brings an interactivity and engagement layer to 15+ familiar formats: presentations, flipbooks, videos, scrollable microsites, documents, e-books, cards, sliders, blogs, audio, web embeds, landing pages. Dynamic navigation gets readers to the relevant page in one click.'
+      },
+      {
+        icon: ICONS.hub, title: 'Stand-alone docs vs hubs that fuel ABM',
+        themLabel: 'Turtl', them: 'Turtl docs are delivered stand-alone, like a PDF.',
+        usLabel: 'RELAYTO', us: 'RELAYTO content hubs are the connecting fabric across experiences. Always-on event destinations, mass-personalized ABM hubs, sophisticated sales and customer hubs, and a single experience can be re-used across many personalized hubs.'
+      },
+      {
+        icon: ICONS.team, title: 'Marketing-only vs designers + marketers + sellers',
+        themLabel: 'Turtl', them: 'Turtl ships a simple but limited design tool that suits beginner marketers.',
+        usLabel: 'RELAYTO', us: 'An intuitive no-code design suite for beginners and experienced designers. Marketers, sellers and customer teams turn PowerPoints and PDFs into interactive experiences themselves, anyone who knows PowerPoint becomes an on-brand digital communicator. Clients call it "low barrier, high ceiling".'
+      },
+      {
+        icon: ICONS.shield, title: 'Basic security vs enterprise-grade across the journey',
+        themLabel: 'Turtl', them: 'Turtl supports public, email-authentication and SSO access.',
+        usLabel: 'RELAYTO', us: 'Public, Unlisted, Password, Gated access by individual/domain, Email authentication, MFA and SSO/SAML, relevant for sales enablement, ABM/ABS hubs, RFP responses, proposals and client portals.'
+      },
+    ],
+    quick: {
+      title: 'For microsite creation, here is what changes day-to-day.',
+      sub: 'A focused look at the capabilities marketing teams test on day one.',
+      colCompetitor: 'Turtl',
+      rows: [
+        ['Microsite creation', 'Not native', 'Fully supported'],
+        ['Website-style navigation', 'Limited', 'Full navigation systems'],
+        ['Multi-format content', 'Limited', 'Fully supported'],
+        ['Convert existing assets into microsites', 'No', 'Yes'],
+        ['Campaign destinations', 'Limited', 'Fully supported'],
+        ['ABM and sales hubs', 'Limited', 'Fully supported'],
+        ['No-code microsite creation', 'Limited', 'Yes'],
+      ],
+    },
+    big: {
+      sub: 'The capabilities side-by-side, with the RELAYTO advantage and the business value attached to each.',
+      colCompetitor: 'Turtl',
+      rows: [
+        { feature: 'Microsite creation',
+          them: 'Not designed for true microsites. Uses linear "Surf" and "Immerse" document format with limited structural flexibility.',
+          us:   'Native microsite creation with multi-page navigation, modular layouts, embedded media and website-style structure.',
+          adv:  'Enables full campaign destinations, sales deal rooms and interactive microsites, not just documents.',
+          val:  'Create high-converting campaign destinations faster, improved engagement, conversion rates and digital experience quality, without web-development resources.',
+          metrics: ['25%+ sustained traffic uplift']
+        },
+        { feature: 'Account-Based Marketing (ABM) support',
+          them: 'Limited support for personalized experiences. Primarily focused on individual document sharing.',
+          us:   'Dedicated ABM hubs and personalized microsites for target accounts, deal rooms, executive briefings, tailored buyer journeys.',
+          adv:  'Scalable ABM programs with personalized content destinations per account.',
+          val:  'Improves deal velocity, win rates and buyer engagement through highly personalized, account-specific experiences.',
+          metrics: ['2x higher win rates', '70%+ fewer follow-up delays']
+        },
+        { feature: 'Campaign support',
+          them: 'Supports individual interactive documents but lacks infrastructure for full campaign ecosystems.',
+          us:   'Full campaign support through microsites and connected hubs that combine multiple content types into unified campaign destinations.',
+          adv:  'Scalable, integrated campaign experiences instead of isolated assets.',
+          val:  'Increases campaign performance, improves lead conversion and maximises ROI on marketing initiatives.',
+          metrics: ['10x engagement uplift']
+        },
+        { feature: 'Content hubs',
+          them: 'No native hub functionality. Content is delivered as stand-alone assets.',
+          us:   'Integrated content hubs that organise multiple experiences into centralized destinations for campaigns, events, sales and customer engagement.',
+          adv:  'Always-on content destinations and connected buyer journeys.',
+          val:  'Improves content discoverability, extends content lifespan and supports continuous engagement across the buyer lifecycle.',
+          metrics: []
+        },
+        { feature: 'Ease of content creation',
+          them: 'Requires rebuilding content using Turtl-specific format and builder. Migrating existing content can be time-consuming.',
+          us:   'No-code platform that allows both creation from scratch and instant conversion of existing PDFs, PowerPoints and other assets into interactive experiences.',
+          adv:  'Faster time to market and lower effort by leveraging existing content and familiar tools.',
+          val:  'Reduces production time and cost while empowering more teams to create interactive content independently.',
+          metrics: []
+        },
+        { feature: 'Template usage',
+          them: 'Offers templates, but all experiences follow the same underlying format and structure, limiting differentiation.',
+          us:   'Flexible, brand-controlled templates that support multiple formats, layouts and experience types, microsites, presentations, hubs.',
+          adv:  'Greater creative flexibility for diverse use cases and brand requirements.',
+          val:  'Brand consistency with scalable content creation across teams and use cases.',
+          metrics: ['Up to 90% less production time']
+        },
+        { feature: 'Analytics capabilities',
+          them: 'Engagement analytics at the document level. Limited ability to analyse engagement across broader content ecosystems.',
+          us:   'Advanced analytics across experiences, microsites, hubs and campaigns, with marketing and sales platform integrations.',
+          adv:  'Deeper insight into buyer engagement across the full content journey.',
+          val:  'Data-driven decisions, better campaign optimization, and prioritised sales follow-ups on engaged prospects.',
+          metrics: ['10x engagement uplift']
+        },
+        { feature: 'Security',
+          them: 'Basic security features including public access, email gating and SSO options.',
+          us:   'Enterprise-grade security supporting secure hubs, personalised experiences, enterprise authentication and integration with enterprise systems.',
+          adv:  'Secure delivery of sensitive sales, marketing and customer content across the entire buyer journey.',
+          val:  'Reduces risk, supports enterprise compliance and enables secure sharing of confidential business content.',
+          metrics: []
+        },
+      ],
+    },
+  },
+  ceros: {
+    competitor: { heroName: 'Ceros', name: 'Ceros' },
+    hero: {
+      lede: 'Both produce rich interactive microsites. For consulting teams running proposals, pursuits and client communications, the differences in workflow, speed and platform model show up immediately, and RELAYTO turns Figma HTML, PDFs and PowerPoints into branded, navigable microsites in days, not weeks.',
+      stat1: { num: '~2 days', label: 'Pursuit microsite production with templates + AI + re-use' },
+      stat2: { num: '5×',    label: 'Faster time-to-publish vs designer-built canvases' },
+      stat3: { num: 'Figma → live', label: 'Direct HTML ingest, no canvas rebuild required' },
+      stat4: { num: '2×',   label: 'Higher win rates on competitive bids with pursuit hubs' },
+    },
+    narrative: {
+      heading: { tail: 'proposals and pursuits' },
+      kicker: 'Teams comparing RELAYTO and Ceros tell us these five differences decide the room.',
+    },
+    story: [
+      {
+        icon: ICONS.figma, title: 'Blank canvas vs content-to-experience platform',
+        themLabel: 'Ceros', them: 'A blank-canvas, drag-and-drop design studio, every pursuit microsite is built from scratch by a designer. Importing existing content is recent and limited: ~100-page PDF/PPT cap, fonts and ligatures do not transfer cleanly, canvas inherits source dimensions and usually needs a re-layout.',
+        usLabel: 'RELAYTO', us: 'A purpose-built experience platform that ingests existing content, Figma HTML, PDFs, PowerPoints, videos and 15+ familiar formats, and converts it into a branded, navigable microsite. AI templates tuned per company generate a new microsite in ~15–20 minutes.'
+      },
+      {
+        icon: ICONS.hub, title: 'Stand-alone experiences vs pursuit hubs',
+        themLabel: 'Ceros', them: 'Ceros experiences are individual, stand-alone assets. There is no native hub layer, so every pursuit, deal room and client portal is assembled and maintained as separate pieces.',
+        usLabel: 'RELAYTO', us: 'Content hubs are the connecting fabric, per-pursuit destinations that stay live through the cycle, re-usable experiences across many personalized pursuit hubs, RFP responses, executive briefings and secure client portals all as connected microsites.'
+      },
+      {
+        icon: ICONS.team, title: 'Designers-only vs designers + pursuit teams + sellers',
+        themLabel: 'Ceros', them: 'Powerful but designer-centric, overwhelming for non-designers, so every proposal bottlenecks on the design team. That bottleneck is the main reason production stretches to ~10 days per microsite.',
+        usLabel: 'RELAYTO', us: 'A no-code interaction-design suite. Proposal teams, partners, sellers and customer teams turn PowerPoints, PDFs and Figma HTML into interactive experiences themselves. "Low barrier, high ceiling", which compresses 10-day production to ~2 days.'
+      },
+      {
+        icon: ICONS.shield, title: 'Design-tool security vs enterprise-grade for RFPs and portals',
+        themLabel: 'Ceros', them: 'Password authentication and enterprise SSO (SAML, OAuth, LDAP) for access control.',
+        usLabel: 'RELAYTO', us: 'Public, Unlisted, Password, Gated by individual/domain, Email auth, MFA and SSO/SAML, directly relevant to RFP responses, proposals, deal rooms, client portals and customer-success hubs where every engagement needs a different access level.'
+      },
+      {
+        icon: ICONS.spark, title: 'No native AI generation vs AI generation + per-account templates',
+        themLabel: 'Ceros', them: 'Some AI assists inside the design canvas, but does not generate full pursuit microsites from existing content. Each AI-assisted asset is still designed and assembled by hand.',
+        usLabel: 'RELAYTO', us: 'AI generation that turns existing content (Figma HTML, PDFs, PowerPoints, brand guidelines) into a full interactive microsite, plus AI-powered templates tuned to specific client accounts, so a pursuit microsite spins up in hours.'
+      },
+    ],
+    quick: {
+      title: 'For pursuit and proposal microsites, here is what changes day-to-day.',
+      sub: 'The capabilities consulting and proposal teams test on day one.',
+      colCompetitor: 'Ceros',
+      rows: [
+        ['Figma → microsite workflow', 'Build from scratch on canvas', 'Direct Figma / HTML ingest'],
+        ['Re-use existing PDFs / PPTs as proposal content', 'Beta, with limitations', 'Core, near-instant'],
+        ['Pursuit microsite production time', '~10 days (designer-built)', '~2 days (templates + AI + reuse)'],
+        ['Per-client templated microsites', 'Custom designer build per client', 'Reusable, on-brand, per-account AI templates'],
+        ['Self-serve for proposal & pursuit teams', 'Limited (designer-centric)', 'Yes (PowerPoint-easy)'],
+        ['Website-style navigation across proposal sections', 'Custom build required', 'Built-in dynamic navigation'],
+      ],
+    },
+    big: {
+      sub: 'The capabilities side-by-side, with the RELAYTO advantage and the business value attached to each.',
+      colCompetitor: 'Ceros',
+      rows: [
+        { feature: 'Proposal & pursuit microsite production time',
+          them: 'Each microsite is hand-built on a blank canvas by a designer; alternative is a non-brand-compliant template. Production typically takes ~10 working days per engagement.',
+          us:   'Microsites assembled from existing Figma HTML, PDFs and PPTs using reusable per-account brand-compliant templates and AI generation; typical pursuit microsite produced in ~1–2 days.',
+          adv:  '5× faster time-to-publish for proposals and pursuits.',
+          val:  'Frees proposal teams to support more pursuits per quarter without growing the design team, and shortens response cycles on time-sensitive RFPs.',
+          metrics: ['5× faster publish']
+        },
+        { feature: 'Figma → microsite workflow',
+          them: 'No direct Figma ingest. Designers re-build proposal content on the Ceros canvas using Figma as reference, duplicating design work.',
+          us:   'Ingests Figma HTML exports directly and converts them into navigable multi-page microsites with dynamic navigation.',
+          adv:  'Uses the existing Figma design system as source of truth, no re-build required.',
+          val:  'Eliminates duplicate design work; Figma stays the brand source while RELAYTO becomes the delivery layer for proposals and pursuits.',
+          metrics: []
+        },
+        { feature: 'AI generation & AI-powered templates',
+          them: 'Limited AI assists inside the design canvas. No native ability to generate a full microsite from existing content or to deploy AI-powered, per-account templates at scale.',
+          us:   'AI generation that turns existing decks, PDFs and Figma content into interactive microsites; AI-powered templates tuned per client / account.',
+          adv:  'First-draft microsites in minutes; standardised per-account branding across pursuits.',
+          val:  'Removes the design bottleneck for high-volume pursuit teams; consistent on-brand output across many concurrent engagements.',
+          metrics: ['First draft in minutes']
+        },
+        { feature: 'Proposals, pursuits & deal rooms',
+          them: 'Supports custom-built proposal pages, but each pursuit microsite, deal room and RFP response is designed and managed as an individual asset.',
+          us:   'Dedicated proposal microsites, pursuit hubs, deal rooms and client portals, with personalized buyer journeys and per-stakeholder engagement tracking.',
+          adv:  'Scalable proposal & pursuit programs with personalized destinations per engagement.',
+          val:  'Improves win rates, deal velocity and stakeholder engagement on competitive pursuits.',
+          metrics: ['2× higher win rates', '70%+ fewer follow-up delays']
+        },
+        { feature: 'Content hubs / client portals',
+          them: 'No native hub functionality. Pursuit and client content lives as stand-alone assets.',
+          us:   'Integrated content hubs that organise multiple experiences into pursuit destinations, client portals and account hubs.',
+          adv:  'Always-on destinations for accounts, pursuits and customer engagements.',
+          val:  'Improves content discoverability, extends content lifespan across the engagement and supports continuous engagement across the buyer lifecycle.',
+          metrics: []
+        },
+        { feature: 'Ease of creation for proposal / pursuit teams',
+          them: 'Blank-canvas design tool best suited to professional designers; reported as overwhelming for non-designers. PDF/PowerPoint import is a recent beta with notable limitations, so most pursuit microsites are still built manually on the canvas.',
+          us:   'No-code platform supporting both creation from scratch and instant conversion of existing PDFs, PowerPoints, Figma HTML and other assets into interactive experiences.',
+          adv:  'Proposal teams, partners, sellers and customer teams produce on-brand microsites themselves without waiting on design.',
+          val:  'Reduces production time and cost; supports much higher pursuit volume per quarter with the same headcount.',
+          metrics: []
+        },
+        { feature: 'Templates',
+          them: 'Offers templates and an inspiration gallery, but realising them still requires design work on the canvas to customise and brand each proposal.',
+          us:   'Flexible, brand-controlled, per-account templates that support microsites, presentations and hubs, including AI-generated, account-specific templates.',
+          adv:  'Re-usable, on-brand, per-client templates that non-designers can deploy.',
+          val:  'Brand consistency across pursuits with scalable content creation across teams and use cases.',
+          metrics: ['Up to 90% less production time']
+        },
+        { feature: 'Analytics',
+          them: 'Engagement analytics at the experience level; cross-experience and account-level reporting is more limited, some outputs hard to organise.',
+          us:   'Advanced analytics across experiences, microsites, hubs and accounts, with marketing and sales platform integrations.',
+          adv:  'Surfaces which stakeholders engaged with which sections of a proposal or pursuit microsite.',
+          val:  'Lets proposal and sales teams prioritise the right stakeholders and time follow-ups precisely; informs the next round of pursuit content.',
+          metrics: ['10x engagement uplift']
+        },
+        { feature: 'Security',
+          them: 'Password authentication and enterprise SSO (SAML, OAuth, LDAP).',
+          us:   'Enterprise-grade security with granular gating (by individual or domain), email auth, MFA, SSO/SAML, plus integration with enterprise systems for secure proposal sharing, RFP delivery, deal rooms and client portals.',
+          adv:  'Right level of access control per engagement type, from public marketing site to confidential client portal.',
+          val:  'Reduces risk on sensitive pursuit content, supports enterprise compliance and enables secure sharing of confidential business content with client stakeholders.',
+          metrics: []
+        },
+      ],
+    },
+  },
+};
+
+/* ---------- RENDERING ---------- */
+
+function get(obj, path) {
+  return path.split('.').reduce((o, k) => (o == null ? o : o[k]), obj);
+}
+
+function renderStory(state) {
+  const data = DATA[state];
+  const container = document.getElementById('storySteps');
+  container.innerHTML = data.story.map((step, i) => `
+    <article class="card p-6 sm:p-8 is-hoverable">
+      <div class="grid sm:grid-cols-[auto_1fr] gap-6 sm:gap-8 items-start">
+        <div class="flex items-center gap-4 sm:flex-col sm:items-start">
+          <div class="step-num">${String(i+1).padStart(2,'0')}</div>
+          <div class="icon-tile gradient-primary sm:mt-2" aria-hidden="true">${step.icon}</div>
+        </div>
+        <div>
+          <h3 class="text-xl sm:text-2xl font-semibold tracking-tight leading-tight">${step.title}</h3>
+          <div class="mt-5 grid md:grid-cols-2 gap-4 sm:gap-5">
+            <div class="rounded-2xl border border-black/5 bg-[#FAFAFA] p-5">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="cmp-bad">${step.themLabel}</span>
+              </div>
+              <p class="text-[15px] leading-relaxed text-ink-muted">${step.them}</p>
+            </div>
+            <div class="rounded-2xl border border-black/5 bg-white p-5 relative overflow-hidden">
+              <div class="absolute inset-0 pointer-events-none opacity-60" style="background: radial-gradient(circle at top right, rgba(253,144,1,0.08), transparent 60%);"></div>
+              <div class="relative">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="cmp-good">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                    ${step.usLabel}
+                  </span>
+                </div>
+                <p class="text-[15px] leading-relaxed text-black/90">${step.us}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderQuick(state) {
+  const data = DATA[state].quick;
+  const wrap = document.getElementById('quickRows');
+  wrap.innerHTML = data.rows.map((r, i) => `
+    <div class="cmp-row grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[1.6fr_1fr_1fr] ${i ? 'border-t border-black/[0.06]' : ''}">
+      <div class="px-4 sm:px-6 py-4 font-semibold text-black">${r[0]}</div>
+      <div class="px-4 sm:px-6 py-4 text-center"><span class="cmp-bad">${r[1]}</span></div>
+      <div class="px-4 sm:px-6 py-4 text-center"><span class="cmp-good">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+        ${r[2]}</span></div>
+    </div>
+  `).join('');
+}
+
+function renderBigTable(state) {
+  const data = DATA[state].big;
+  const themLabel = DATA[state].competitor.name;
+  const body = document.getElementById('bigtableBody');
+  body.innerHTML = data.rows.map((row) => `
+    <tr>
+      <td class="feature px-4 sm:px-5 py-5" data-label="Capability">${row.feature}</td>
+      <td class="col-them px-4 sm:px-5 py-5" data-label="${themLabel}">${row.them}</td>
+      <td class="col-rel px-4 sm:px-5 py-5" data-label="RELAYTO">${row.us}</td>
+      <td class="col-adv px-4 sm:px-5 py-5" data-label="RELAYTO advantage">${row.adv}</td>
+      <td class="col-val px-4 sm:px-5 py-5" data-label="RELAYTO business value">
+        <div>${row.val}</div>
+        ${row.metrics && row.metrics.length ? `<div class="mt-2">${row.metrics.map(m=>`<span class="metric">${m}</span>`).join('')}</div>` : ''}
+      </td>
+    </tr>
+  `).join('');
+}
+
+function setSimpleSwaps(state) {
+  document.querySelectorAll('[data-swap]').forEach(el => {
+    const path = el.getAttribute('data-swap');
+    const v = get(DATA[state], path);
+    if (typeof v === 'string') el.textContent = v;
+  });
+}
+
+/* ---------- TOGGLE LOGIC ---------- */
+
+const toggles = [document.getElementById('segToggle'), document.getElementById('segToggleMobile')].filter(Boolean);
+let currentState = 'turtl';
+let isAnimating = false;
+
+function applyState(next, opts = {}) {
+  if (next === currentState || isAnimating) return;
+  isAnimating = true;
+  const swappables = document.querySelectorAll('.compare-swap');
+
+  // Update toggle visual state
+  toggles.forEach(t => {
+    t.dataset.active = next;
+    t.querySelectorAll('button').forEach(b => {
+      const on = b.dataset.value === next;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  });
+
+  // Cool theme for Ceros
+  document.documentElement.classList.toggle('is-cool', next === 'ceros');
+
+  // Fade out
+  swappables.forEach(el => el.classList.add('is-leaving'));
+
+  setTimeout(() => {
+    currentState = next;
+    setSimpleSwaps(next);
+    renderStory(next);
+    renderQuick(next);
+    renderBigTable(next);
+
+    // Update hero heading inner gradient span swap (re-grab because it was replaced)
+    // (already handled by data-swap path competitor.heroName)
+
+    swappables.forEach(el => {
+      el.classList.remove('is-leaving');
+      el.classList.add('is-entering');
+    });
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        swappables.forEach(el => el.classList.remove('is-entering'));
+        isAnimating = false;
+      });
+    });
+
+    // Update URL hash (no scroll jump)
+    if (!opts.silent) {
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('vs', next);
+        history.replaceState(null, '', url);
+      } catch(e){}
+    }
+  }, 260);
+}
+
+toggles.forEach(t => {
+  t.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-value]');
+    if (!btn) return;
+    applyState(btn.dataset.value);
+  });
+  t.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft')  applyState('turtl');
+    if (e.key === 'ArrowRight') applyState('ceros');
+  });
+});
+
+// Keyboard shortcut: T / C
+document.addEventListener('keydown', (e) => {
+  const tag = (e.target && e.target.tagName) || '';
+  if (['INPUT','TEXTAREA','SELECT'].includes(tag)) return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === 't' || e.key === 'T') applyState('turtl');
+  if (e.key === 'c' || e.key === 'C') applyState('ceros');
+});
+
+// Init from URL
+(function init() {
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const params = new URLSearchParams(window.location.search);
+  const initial = params.get('vs') === 'ceros' ? 'ceros' : 'turtl';
+  // Render initial content
+  setSimpleSwaps(initial);
+  renderStory(initial);
+  renderQuick(initial);
+  renderBigTable(initial);
+  currentState = initial;
+  // Mark toggles
+  toggles.forEach(t => {
+    t.dataset.active = initial;
+    t.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.value === initial ? 'true' : 'false'));
+  });
+  document.documentElement.classList.toggle('is-cool', initial === 'ceros');
+
+  // Reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
