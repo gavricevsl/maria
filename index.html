@@ -65,7 +65,11 @@
 
   <style>
     /* ── Typography ───────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
     body { font-family: 'Proxima Nova', 'Montserrat', ui-sans-serif, system-ui, sans-serif; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
 
     /* ── Gradient text ────────────────────────────────────────── */
     .g-text {
@@ -178,10 +182,10 @@
       </nav>
 
       <!-- Sticky CTA -->
-      <a href="https://luma.com/8nih5m30?lm_source=embed" target="_blank" rel="noopener noreferrer"
+      <a href="#register"
          class="btn-cta flex-shrink-0 px-5 py-2.5 rounded-full text-white text-sm font-semibold
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F1624C]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black">
-        Register Now
+        Register
       </a>
 
     </div>
@@ -210,114 +214,139 @@
 
     <!-- Content grid -->
     <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28 w-full">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-        <!-- ── Left: Copy ────────────────────────────────────── -->
-        <div class="reveal">
+        <!-- ── Left: Copy (7 cols) ───────────────────────────── -->
+        <div class="lg:col-span-7 reveal">
 
           <!-- Event label pill -->
           <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full
                       border border-white/10 bg-white/[0.06] backdrop-blur-sm mb-8">
-            <span class="w-2 h-2 rounded-full g-primary flex-shrink-0" style="animation:none"></span>
+            <span class="w-2 h-2 rounded-full g-primary flex-shrink-0"></span>
             <span class="text-xs font-semibold text-white/70 tracking-widest uppercase">
-              UEFA Champions League Final · Paris
+              Champions League Final · Watch Party · Paris
             </span>
           </div>
 
           <!-- Headline -->
-          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight mb-6">
-            Football.<br>
-            Founders.<br>
-            <span class="g-text-shimmer">The&nbsp;7ème.</span>
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
+            Europe's biggest match.<br>
+            <span class="g-text-shimmer">A small room</span> in Paris.
           </h1>
 
           <!-- Sub-headline -->
-          <p class="text-lg lg:text-xl text-white/65 leading-relaxed mb-8 max-w-lg">
-            Alex Shevelenko is hosting an intimate watch party for the Champions League Final —
-            good people, great football, and the kind of energy only Paris can deliver.
+          <p class="text-lg lg:text-xl text-white/65 leading-relaxed mb-10 max-w-xl">
+            The 2026 UEFA Champions League Final lands on May 30 — and we're claiming a corner
+            of the 7ème to watch it the way the beautiful game deserves to be watched.
+            Together.
           </p>
 
-          <!-- Quick facts row -->
-          <div class="flex flex-col sm:flex-row gap-5 mb-10">
-
-            <div class="flex items-center gap-3.5">
-              <div class="w-11 h-11 rounded-2xl bg-white/[0.08] border border-white/[0.10] flex items-center justify-center flex-shrink-0">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FD9001"
-                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="3" y="4" width="18" height="18" rx="2"/>
-                  <line x1="16" y1="2" x2="16" y2="6"/>
-                  <line x1="8"  y1="2" x2="8"  y2="6"/>
-                  <line x1="3"  y1="10" x2="21" y2="10"/>
-                </svg>
-              </div>
-              <div>
-                <div class="text-[11px] text-white/40 font-semibold uppercase tracking-widest">Date &amp; Time</div>
-                <div class="text-sm font-semibold text-white mt-0.5">Sat, May 30 · 6 – 8 PM GMT+2</div>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-3.5">
-              <div class="w-11 h-11 rounded-2xl bg-white/[0.08] border border-white/[0.10] flex items-center justify-center flex-shrink-0">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2617A"
-                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                  <circle cx="12" cy="10" r="3"/>
-                </svg>
-              </div>
-              <div>
-                <div class="text-[11px] text-white/40 font-semibold uppercase tracking-widest">Location</div>
-                <div class="text-sm font-semibold text-white mt-0.5">7th Arrondissement, Paris</div>
-              </div>
-            </div>
-
-          </div>
-
           <!-- CTA group -->
-          <div class="flex flex-col sm:flex-row gap-4">
-            <a href="https://luma.com/8nih5m30?lm_source=embed" target="_blank" rel="noopener noreferrer"
-               class="btn-cta inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full
+          <div class="flex flex-col sm:flex-row gap-4 items-start">
+            <a href="#register"
+               class="btn-cta inline-flex items-center justify-center gap-3 px-9 py-5 rounded-full
                       text-white font-semibold text-base lg:text-lg
                       focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F1624C]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black">
-              Secure Your Spot
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              Reserve Your Spot
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+                <path d="M12 5v14M5 12l7 7 7-7"/>
               </svg>
             </a>
 
             <a href="#about"
-               class="btn-ghost inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full
+               class="btn-ghost inline-flex items-center justify-center gap-2 px-8 py-5 rounded-full
                       text-white/60 font-semibold text-base border border-white/[0.15]
                       focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30">
-              More Details
+              About the Night
             </a>
           </div>
 
         </div>
 
-        <!-- ── Right: Luma iframe ─────────────────────────────── -->
-        <div class="reveal" style="transition-delay:.15s">
+        <!-- ── Right: Match Fixture Card (5 cols) ─────────────── -->
+        <div class="lg:col-span-5 reveal" style="transition-delay:.15s">
 
-          <!-- Gradient border wrapper -->
-          <div class="g-border rounded-3xl overflow-hidden">
-            <div class="bg-[#0D0D0D] rounded-[23px]">
-              <iframe
-                src="https://luma.com/embed/event/evt-CNgYEKHFYnTmaXD/simple"
-                width="100%"
-                height="500"
-                frameborder="0"
-                style="display:block;min-height:500px;"
-                allow="fullscreen; payment"
-                aria-hidden="false"
-                tabindex="0"
-                title="Register — UEFA Champions League Final Watch Party, Paris"
-                loading="lazy"
-              ></iframe>
+          <div class="g-border rounded-3xl">
+            <div class="bg-gradient-to-br from-[#0D0D0D] to-[#000] rounded-[23px] p-8 lg:p-10 relative overflow-hidden">
+
+              <!-- Soft warm halo inside the card -->
+              <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
+                   style="background:radial-gradient(circle,rgba(253,144,1,.4),transparent 70%);filter:blur(50px);" aria-hidden="true"></div>
+
+              <!-- Header: competition badge -->
+              <div class="relative flex items-center justify-between mb-8">
+                <div>
+                  <div class="text-[10px] text-white/40 font-semibold uppercase tracking-[0.2em] mb-1">UEFA</div>
+                  <div class="text-white font-bold text-base leading-tight">Champions League<br>Final 2026</div>
+                </div>
+                <!-- Trophy icon -->
+                <div class="w-12 h-12 rounded-2xl g-primary flex items-center justify-center flex-shrink-0">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white"
+                       stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                    <path d="M4 22h16"/>
+                    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Fixture: TBD vs TBD -->
+              <div class="relative flex items-center justify-between mb-8">
+                <div class="flex-1 text-center">
+                  <div class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-white/[0.06] border border-white/[0.10]
+                              flex items-center justify-center">
+                    <span class="text-white/30 font-bold text-2xl">?</span>
+                  </div>
+                  <div class="text-white/50 text-xs font-semibold uppercase tracking-wider">Finalist&nbsp;1</div>
+                </div>
+
+                <div class="px-4 flex-shrink-0">
+                  <span class="g-text font-bold text-2xl tracking-tight">VS</span>
+                </div>
+
+                <div class="flex-1 text-center">
+                  <div class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-white/[0.06] border border-white/[0.10]
+                              flex items-center justify-center">
+                    <span class="text-white/30 font-bold text-2xl">?</span>
+                  </div>
+                  <div class="text-white/50 text-xs font-semibold uppercase tracking-wider">Finalist&nbsp;2</div>
+                </div>
+              </div>
+
+              <!-- "Confirmed after semis" pill -->
+              <div class="relative flex justify-center mb-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full
+                            border border-[#F1624C]/30 bg-[#F1624C]/[0.08]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#F1624C]"></span>
+                  <span class="text-[11px] text-[#FD9001] font-semibold tracking-wide">Confirmed after the semis</span>
+                </div>
+              </div>
+
+              <!-- Match details row -->
+              <div class="relative grid grid-cols-3 gap-3 pt-6 border-t border-white/[0.06]">
+                <div class="text-center">
+                  <div class="text-[10px] text-white/35 font-semibold uppercase tracking-widest mb-1">Date</div>
+                  <div class="text-white text-sm font-semibold">May 30</div>
+                </div>
+                <div class="text-center border-x border-white/[0.06]">
+                  <div class="text-[10px] text-white/35 font-semibold uppercase tracking-widest mb-1">Stadium</div>
+                  <div class="text-white text-sm font-semibold">Puskás Aréna</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-[10px] text-white/35 font-semibold uppercase tracking-widest mb-1">City</div>
+                  <div class="text-white text-sm font-semibold">Budapest</div>
+                </div>
+              </div>
+
             </div>
           </div>
 
-          <p class="text-center text-white/30 text-xs mt-3 font-semibold tracking-wide">
-            Hosted by Alex Shevelenko · RELAYTO &nbsp;·&nbsp; Spaces are limited
+          <p class="text-center text-white/30 text-xs mt-4 font-semibold tracking-wide">
+            Match fixture · Live broadcast watched together in the 7ème
           </p>
 
         </div>
@@ -460,19 +489,91 @@
             </div>
           </div>
 
-          <!-- Sidebar CTA -->
-          <a href="https://luma.com/8nih5m30?lm_source=embed" target="_blank" rel="noopener noreferrer"
+          <!-- Sidebar nudge -->
+          <a href="#register"
              class="btn-cta w-full py-4 rounded-2xl text-white font-semibold text-base text-center
                     focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F1624C]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F6F6F6]">
-            Register on Lu.ma
+            Reserve Your Spot
             <svg class="inline-block ml-2" width="16" height="16" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+              <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
           </a>
 
         </div>
       </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!--  REGISTRATION — full-width Luma embed                       -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="register" class="relative bg-black py-24 lg:py-32 overflow-hidden scroll-mt-20">
+
+    <!-- Ambient blobs -->
+    <div class="absolute -top-32 right-1/4 w-[700px] h-[700px] rounded-full pointer-events-none animate-drift-a"
+         style="background:radial-gradient(circle,#FD9001 0%,#E2617A 45%,transparent 70%);filter:blur(140px);opacity:.22;" aria-hidden="true"></div>
+    <div class="absolute -bottom-40 left-1/4 w-[600px] h-[700px] rounded-full pointer-events-none animate-drift-b"
+         style="background:radial-gradient(circle,#4978DE 0%,#DF5A7D 45%,transparent 70%);filter:blur(150px);opacity:.16;" aria-hidden="true"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
+
+      <!-- Section heading -->
+      <div class="text-center mb-12 reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full
+                    border border-white/10 bg-white/[0.06] backdrop-blur-sm mb-6">
+          <span class="w-2 h-2 rounded-full g-primary"></span>
+          <span class="text-xs font-semibold text-white/70 tracking-widest uppercase">Reserve Your Spot</span>
+        </div>
+
+        <h2 class="text-4xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-white mb-5">
+          See you in <span class="g-text-shimmer">the 7ème</span>.
+        </h2>
+
+        <p class="text-lg lg:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto">
+          Tap below to confirm your spot. Spaces are limited and going quickly —
+          first names on the list get the best seats to the screen.
+        </p>
+      </div>
+
+      <!-- Luma embed (full width, gradient framed) -->
+      <div class="reveal" style="transition-delay:.12s">
+        <div class="g-border rounded-3xl overflow-hidden shadow-[0_0_80px_rgba(241,98,76,0.15)]">
+          <div class="bg-white rounded-[23px] overflow-hidden">
+            <iframe
+              src="https://luma.com/embed/event/evt-CNgYEKHFYnTmaXD/simple"
+              width="100%"
+              height="780"
+              frameborder="0"
+              style="display:block;width:100%;min-height:780px;border:0;"
+              allow="fullscreen; payment"
+              aria-hidden="false"
+              tabindex="0"
+              title="Register — UEFA Champions League Final Watch Party, Paris"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Below-embed nudge / fallback -->
+      <div class="text-center mt-8 reveal" style="transition-delay:.2s">
+        <p class="text-white/40 text-sm font-semibold mb-4">
+          Trouble loading the form?
+        </p>
+        <a href="https://luma.com/8nih5m30?lm_source=embed" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 text-[#FD9001] hover:text-[#E2617A]
+                  font-semibold text-base transition-colors duration-200
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F1624C]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-lg px-2 py-1">
+          Open the registration page on Lu.ma
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </a>
+      </div>
+
     </div>
   </section>
 
